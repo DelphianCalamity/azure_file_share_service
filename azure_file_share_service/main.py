@@ -171,23 +171,22 @@ def main():
         "tenantId": args.tenant_id,
     }
     azure_file_share_service = AzureFileShareService(config)
-    match args.function:
-        case "list_files":
-            azure_file_share_service.list_files(remote_path=args.remote_path)
-        case "upload":
-            azure_file_share_service.upload(
-                local_path=args.local_path,
-                remote_path=args.remote_path,
-                recursive=args.recursive,
-            )
-        case "download":
-            azure_file_share_service.download(
-                remote_path=args.remote_path,
-                local_path=args.local_path,
-                recursive=args.recursive,
-            )
-        case _:
-            raise ValueError(f"Function {args.function} not supported")
+    if args.function == "list_files":
+        azure_file_share_service.list_files(remote_path=args.remote_path)
+    elif args.function == "upload":
+        azure_file_share_service.upload(
+            local_path=args.local_path,
+            remote_path=args.remote_path,
+            recursive=args.recursive,
+        )
+    elif args.function == "download":
+        azure_file_share_service.download(
+            remote_path=args.remote_path,
+            local_path=args.local_path,
+            recursive=args.recursive,
+        )
+    else:
+        raise ValueError(f"Function {args.function} not supported")
 
 
 if __name__ == "__main__":
