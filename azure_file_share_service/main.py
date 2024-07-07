@@ -152,23 +152,21 @@ class AzureFileShareService:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--function", type=str, help="type of service", required=True)
-    parser.add_argument("--storage_account_name", type=str, help="", required=True)
-    parser.add_argument("--storage_file_share_name", type=str, help="", required=True)
-    parser.add_argument(
-        "--managed_identity_client_id", type=str, help="", required=True
-    )
-    parser.add_argument("--tenant_id", type=str, help="", required=True)
-    parser.add_argument("--remote_path", type=str, help="", default=None)
+    parser.add_argument("--remote_path", type=str, help="", required=True)
     parser.add_argument("--local_path", type=str, help="", default=None)
     parser.add_argument("--recursive", type=bool, help="", default=True)
     args = parser.parse_args()
 
+    storage_account_name = os.getenv('STORAGE_ACCOUNT_NAME')
+    storage_file_share_name = os.getenv('STORAGE_FILE_SHARE_NAME')
+    managed_identity_client_id = os.getenv('MANAGED_IDENTITY_CLIENT_ID')
+    tenant_id = os.getenv('TENANT_ID')
+
     config = {
-        "storageAccountName": args.storage_account_name,
-        "storageFileShareName": args.storage_file_share_name,
-        "managedIdentityClientId": args.managed_identity_client_id,
-        "tenantId": args.tenant_id,
+        "storageAccountName": storage_account_name,
+        "storageFileShareName": storage_file_share_name,
+        "managedIdentityClientId": managed_identity_client_id,
+        "tenantId": tenant_id,
     }
     azure_file_share_service = AzureFileShareService(config)
     if args.function == "list_files":
