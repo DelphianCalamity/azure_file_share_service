@@ -174,10 +174,10 @@ def main():
     tenant_id = os.getenv('TENANT_ID')
 
     config = {
-        "storageAccountName": storage_account_name,
-        "storageFileShareName": storage_file_share_name,
-        "managedIdentityClientId": managed_identity_client_id,
-        "tenantId": tenant_id,
+        "storageAccountName": str(storage_account_name),
+        "storageFileShareName": str(storage_file_share_name),
+        "managedIdentityClientId": str(managed_identity_client_id),
+        "tenantId": str(tenant_id),
     }
     azure_file_share_service = AzureFileShareService(config)
     if args.function == "list_files":
