@@ -162,8 +162,9 @@ class AzureFileShareService:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--remote_path", type=str, help="", required=True)
+    parser.add_argument("--function", type=str, help="", required=True)
     parser.add_argument("--local_path", type=str, help="", default=None)
+    parser.add_argument("--remote_path", type=str, help="", required=True)
     parser.add_argument("--recursive", type=bool, help="", default=True)
     args = parser.parse_args()
 
