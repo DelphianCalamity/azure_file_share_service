@@ -168,10 +168,10 @@ def main():
     parser.add_argument("--recursive", type=bool, help="", default=True)
     args = parser.parse_args()
 
-    storage_account_name = os.getenv('STORAGE_ACCOUNT_NAME')
-    storage_file_share_name = os.getenv('STORAGE_FILE_SHARE_NAME')
-    managed_identity_client_id = os.getenv('MANAGED_IDENTITY_CLIENT_ID')
-    tenant_id = os.getenv('TENANT_ID')
+    storage_account_name = os.getenv('storageAccountName')
+    storage_file_share_name = os.getenv('storageFileShareName')
+    managed_identity_client_id = os.getenv('managedIdentityClientId')
+    tenant_id = os.getenv('tenantId')
 
     config = {
         "storageAccountName": str(storage_account_name),
